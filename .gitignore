@@ -46,3 +46,35 @@ replay_pid*
 # ==========================================
 coverage/
 jacoco.exec
+
+# intellij
+.idea/
+*.iml
+
+# eclipse
+.project
+.classpath
+.settings/
+
+# netbeans
+nbproject/
+
+# java
+*.class
+target/
+
+# maven release plugin
+release.properties
+pom.xml.releaseBackup
+pom.xml.tag
+pom.xml.next
+
+# maven flatten plugin
+.flattened-pom.xml
+
+# crash logs
+*.hprof
+
+# mac
+.AppleDouble
+.LSOverride
