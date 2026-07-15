@@ -1,15 +1,26 @@
 package com.alfin.asyncjob.api.service;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
-import com.alfin.asyncjob.api.dto.CreateJobRequest;
+import com.alfin.asyncjob.api.dto.request.CreateJobRequest;
+import com.alfin.asyncjob.api.dto.response.CreateJobResponse;
+import com.alfin.asyncjob.api.model.JobStatus;
 
 @Service
 public class NotificationService {
 
-    public void createJob(CreateJobRequest request) {
+    public CreateJobResponse createJob(CreateJobRequest request) {
+        String jobId = UUID.randomUUID().toString();
+
         System.out.println("=== NEW JOB ===");
+        System.out.println(jobId);
         System.out.println(request);
+
+        return new CreateJobResponse(
+                jobId,
+                JobStatus.PENDING);
     }
 
 }

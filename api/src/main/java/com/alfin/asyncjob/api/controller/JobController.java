@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alfin.asyncjob.api.dto.CreateJobRequest;
+import com.alfin.asyncjob.api.dto.request.CreateJobRequest;
+import com.alfin.asyncjob.api.dto.response.CreateJobResponse;
 import com.alfin.asyncjob.api.service.NotificationService;
 
 @RestController
@@ -22,8 +23,8 @@ public class JobController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createJob(@RequestBody CreateJobRequest request) {
-        notificationService.createJob(request);
+    public CreateJobResponse createJob(@RequestBody CreateJobRequest request) {
+        return notificationService.createJob(request);
     }
 
 }
