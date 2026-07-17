@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.alfin.asyncjob.api.dto.request.CreateJobRequest;
 import com.alfin.asyncjob.api.dto.response.CreateJobResponse;
-import com.alfin.asyncjob.api.exception.JobNotFoundException;
+import com.alfin.asyncjob.api.exception.DuplicateJobException;
 
 @Service
 public class NotificationService {
@@ -18,7 +18,8 @@ public class NotificationService {
         System.out.println(jobId);
         System.out.println(request);
 
-        throw new JobNotFoundException("123");
+        // throw new JobNotFoundException("123");
+        throw new DuplicateJobException("123");
 
         /**
          * return new CreateJobResponse(

@@ -1,5 +1,13 @@
 package com.alfin.asyncjob.api.exception;
 
-public class DuplicateJobException extends RuntimeException {
+import org.springframework.http.HttpStatus;
 
+public class DuplicateJobException extends BusinessException {
+
+    public DuplicateJobException(String jobId) {
+        super(
+                HttpStatus.BAD_REQUEST,
+                "Duplicate job, jobID: '%s'".formatted(jobId));
+
+    }
 }
