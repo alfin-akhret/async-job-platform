@@ -11,6 +11,8 @@ import com.alfin.asyncjob.api.dto.request.CreateJobRequest;
 import com.alfin.asyncjob.api.dto.response.CreateJobResponse;
 import com.alfin.asyncjob.api.service.NotificationService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/jobs")
 public class JobController {
@@ -23,7 +25,7 @@ public class JobController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateJobResponse createJob(@RequestBody CreateJobRequest request) {
+    public CreateJobResponse createJob(@Valid @RequestBody CreateJobRequest request) {
         return notificationService.createJob(request);
     }
 
