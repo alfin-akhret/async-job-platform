@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: async-job-platform
+
+logging:
+  level:
+    root: INFO
+
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"
