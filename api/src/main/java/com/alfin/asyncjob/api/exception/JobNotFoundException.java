@@ -1,9 +1,13 @@
 package com.alfin.asyncjob.api.exception;
 
-public class JobNotFoundException extends RuntimeException {
+import org.springframework.http.HttpStatus;
+
+public class JobNotFoundException extends BusinessException {
 
     public JobNotFoundException(String jobId) {
-        super("Job with id '%s' was not found.".formatted(jobId));
+        super(
+                HttpStatus.NOT_FOUND,
+                "Job with id '%s' was not found.".formatted(jobId));
     }
 
 }

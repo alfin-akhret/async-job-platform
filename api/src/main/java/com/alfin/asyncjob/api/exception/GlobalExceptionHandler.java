@@ -41,13 +41,14 @@ public class GlobalExceptionHandler {
 
     }
 
-    @ExceptionHandler(JobNotFoundException.class)
-    public ResponseEntity<ApiErrorResponse> handleJobNotFound(
-            JobNotFoundException ex,
+    @ExceptionHandler(BusinessException.class)
+    public ResponseEntity<ApiErrorResponse> handleBusinessException(
+            BusinessException ex,
             HttpServletRequest request) {
+
         ApiErrorResponse response = new ApiErrorResponse(
                 Instant.now(),
-                HttpStatus.NOT_FOUND.value(),
+                ex.getStatus().value(),
                 ex.getMessage(),
                 request.getRequestURI(),
                 List.of());
