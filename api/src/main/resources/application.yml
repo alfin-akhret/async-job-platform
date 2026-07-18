@@ -2,6 +2,14 @@ spring:
   application:
     name: async-job-platform
 
+  datasource:
+    url: jdbc:postgresql://localhost:5433/notification_db
+    username: postgres
+    password: postgres
+
+  jpa:
+    open-in-view: false
+
 logging:
   level:
     root: INFO
