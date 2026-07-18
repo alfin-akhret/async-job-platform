@@ -8,3 +8,8 @@ logging:
 
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"
+
+app:
+  notification:
+    max-retry: 3
+    default-sender: noreply@asyncjob.com
