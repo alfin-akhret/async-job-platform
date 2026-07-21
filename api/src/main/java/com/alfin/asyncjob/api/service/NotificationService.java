@@ -14,6 +14,8 @@ import com.alfin.asyncjob.api.entity.Job;
 import com.alfin.asyncjob.api.model.JobStatus;
 import com.alfin.asyncjob.api.repository.JobRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class NotificationService {
 
@@ -58,6 +60,18 @@ public class NotificationService {
         return new CreateJobResponse(
                 jobId,
                 JobStatus.PENDING);
+    }
+
+    @Transactional
+    public void markAsSuccess(UUID jobId) {
+        Job job = jobRepository.findById(jobId)
+                .orElseThrow(() -> new RuntimeException("Job not found"));
+
+        log.info("Before: {}", job.getStatus());
+
+        job.setStatus(JobStatus.SUCCESS);
+
+        log.info("After: {}", job.getStatus());
     }
 
 }
