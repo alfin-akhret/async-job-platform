@@ -9,9 +9,12 @@ spring:
 
   jpa:
     open-in-view: false
+    show-sql: true
 
 logging:
   level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
     root: INFO
 
   pattern:

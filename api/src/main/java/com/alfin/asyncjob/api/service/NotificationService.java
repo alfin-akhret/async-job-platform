@@ -1,5 +1,6 @@
 package com.alfin.asyncjob.api.service;
 
+import java.time.Instant;
 import java.util.UUID;
 
 import org.slf4j.Logger;
@@ -9,17 +10,24 @@ import org.springframework.stereotype.Service;
 import com.alfin.asyncjob.api.config.NotificationProperties;
 import com.alfin.asyncjob.api.dto.request.CreateJobRequest;
 import com.alfin.asyncjob.api.dto.response.CreateJobResponse;
+import com.alfin.asyncjob.api.entity.Job;
 import com.alfin.asyncjob.api.model.JobStatus;
+import com.alfin.asyncjob.api.repository.JobRepository;
 
 @Service
 public class NotificationService {
 
     private static final Logger log = LoggerFactory.getLogger(NotificationService.class);
 
+    // inject notification properties
     private final NotificationProperties properties;
 
-    public NotificationService(NotificationProperties properties) {
+    // inject repository
+    private final JobRepository jobRepository;
+
+    public NotificationService(NotificationProperties properties, JobRepository jobRepository) {
         this.properties = properties;
+        this.jobRepository = jobRepository;
     }
 
     public CreateJobResponse createJob(CreateJobRequest request) {
@@ -35,6 +43,18 @@ public class NotificationService {
         // throw new DuplicateJobException("123");
 
         log.info("Notification job created successfully");
+
+        Job job = new Job();
+        job.setId(UUID.randomUUID());
+        job.setRecipient(request.recipient());
+        job.setSubject(request.subject());
+        job.setBody(request.body());
+        job.setStatus(JobStatus.PENDING);
+        job.setRetryCount(0);
+        job.setCreatedAt(Instant.now());
+
+        jobRepository.save(job);
+
         return new CreateJobResponse(
                 jobId,
                 JobStatus.PENDING);
