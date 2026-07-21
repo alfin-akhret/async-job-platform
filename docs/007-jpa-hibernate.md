@@ -225,24 +225,6 @@ Entity akan dihapus ketika transaction selesai.
 
 ---
 
-# Mengapa menggunakan EnumType.STRING?
-
-Selalu gunakan:
-
-```java
-@Enumerated(EnumType.STRING)
-```
-
-Jangan menggunakan:
-
-```java
-EnumType.ORDINAL
-```
-
-Karena perubahan urutan enum dapat menyebabkan data di database menjadi salah.
-
----
-
 # Ringkasan
 
 ```
